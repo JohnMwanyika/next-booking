@@ -36,7 +36,9 @@ const HeroItem = () => (
                             <Text c="gray.5">(10 reviews)</Text>
                         </Group>
                     </Box>
-                    <Text my="lg" trancate="end" visibleFrom='lg'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Text>
+                    <Text my="lg" trancate="end" visibleFrom='lg'>
+                        {"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}
+                    </Text>
                     <Group>
                         <Button variant='filled' color='red.5'>Book</Button>
                         <Button variant='outline' color='red.5'>Add to wishlist</Button>

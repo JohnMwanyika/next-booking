@@ -15,7 +15,7 @@ export default function Home() {
             {/* Latest AirBnBs */}
             <Box my="md" py="md">
                 <Group p="md" align="center" justify="space-between">
-                    <Title order={3}>Latest <span className="text-red-500">AirBnB's</span></Title>
+                    <Title order={3}>Latest <span className="text-red-500">AirBnB&apos;s</span></Title>
                     <Text>View All</Text>
                 </Group>
                 <LatestAirBnB />
