@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={inter.className}>
-        <MantineProvider>
+        <MantineProvider defaultColorScheme="light">
           <NavigationProgress />
           {children}
         </MantineProvider>

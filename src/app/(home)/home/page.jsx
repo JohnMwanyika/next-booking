@@ -5,7 +5,7 @@ import { Box, Container, Divider, Group, Text, Title } from "@mantine/core";
 
 export default function Home() {
     return (
-        <Container size="xl" p="md">
+        <Container size="fluid" p="md" style={{ marginTop: "45px" }}>
             {/* Main Slider */}
             <Box>
                 <HeroSlider />

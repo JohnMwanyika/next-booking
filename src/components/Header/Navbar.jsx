@@ -18,9 +18,11 @@ import {
     rem,
     useMantineTheme,
     NavLink,
+    useMantineColorScheme,
+    useComputedColorScheme,
 } from '@mantine/core';
 // import { MantineLogo } from '@mantinex/mantine-logo';
-import { useDisclosure } from '@mantine/hooks';
+import { useColorScheme, useDisclosure, useWindowScroll } from '@mantine/hooks';
 import {
     IconNotification,
     IconCode,
@@ -90,8 +92,13 @@ export function Navbar() {
         </UnstyledButton>
     ));
 
+    const colorScheme = useComputedColorScheme();
+    // console.log(colorScheme);
+    const [scroll, scrollTo] = useWindowScroll();
+    // console.log(scroll);
+
     return (
-        <Box pb={1}>
+        <Box pb={1} bg={colorScheme == "light" && scroll.y > 28 ? "white" : colorScheme == "dark" && scroll.y > 28 ? "dark.7" : ""} >
             <header className={classes.header}>
                 <Group justify="space-between" h="100%">
                     {/* <MantineLogo size={30} /> */}
