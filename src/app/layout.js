@@ -1,5 +1,10 @@
+import '@mantine/core/styles.css';
+import '@mantine/nprogress/styles.css';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { NavigationProgress } from "@mantine/nprogress";
+// core styles are required for all packages
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +16,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <ColorSchemeScript />
+        <link rel="shortcut icon" href="/favicon.svg" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+        />
+      </head>
+      <body className={inter.className}>
+        <MantineProvider>
+          <NavigationProgress />
+          {children}
+        </MantineProvider>
+      </body>
     </html>
   );
 }
