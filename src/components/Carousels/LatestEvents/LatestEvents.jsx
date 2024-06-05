@@ -6,11 +6,60 @@ import { useRef } from 'react';
 // import AutoScroll from 'embla-carousel-auto-scroll';
 import AutoPlay from 'embla-carousel-autoplay';
 
+const events = [
+    {
+        image: "/images/events/event1.png",
+        title: "Sounds from The East",
+        venue: "14 Singila,Mwatate,Taita Tevata",
+        startTime: "02:30 pm",
+        endTime: "07:00 pm",
+        price: 4500.00
+    },
+    {
+        image: "/images/events/event2.png",
+        title: "Sounds from The East",
+        venue: "14 Singila,Mwatate,Taita Tevata",
+        startTime: "02:30 pm",
+        endTime: "07:00 pm",
+        price: 4500.00
+    },
+    {
+        image: "/images/events/event3.png",
+        title: "Sounds from The East",
+        venue: "14 Singila,Mwatate,Taita Tevata",
+        startTime: "02:30 pm",
+        endTime: "07:00 pm",
+        price: 4500.00
+    },
+    {
+        image: "/images/events/event4.png",
+        title: "Sounds from The East",
+        venue: "14 Singila,Mwatate,Taita Tevata",
+        startTime: "02:30 pm",
+        endTime: "07:00 pm",
+        price: 4500.00
+    },
+    {
+        image: "/images/events/event5.png",
+        title: "Sounds from The East",
+        venue: "14 Singila,Mwatate,Taita Tevata",
+        startTime: "02:30 pm",
+        endTime: "07:00 pm",
+        price: 4500.00
+    },
+];
+
 const SliderItem = () => {
     return (
-        <CarouselSlide>
-            <EventCard />
-        </CarouselSlide>
+        <>
+            {
+                events.map((event, i) => (
+                    <CarouselSlide key={i}>
+                        <EventCard data={event} />
+                    </CarouselSlide>
+                ))
+            }
+        </>
     )
 }
 
@@ -24,17 +73,6 @@ export default function LatestEvents() {
             plugins={[autoPlay.current]}
             loop
             align="start">
-            <SliderItem />
-            <SliderItem />
-            <SliderItem />
-            <SliderItem />
-            <SliderItem />
-            <SliderItem />
-            <SliderItem />
-            <SliderItem />
-            <SliderItem />
-            <SliderItem />
-            <SliderItem />
             <SliderItem />
         </Carousel>
     )

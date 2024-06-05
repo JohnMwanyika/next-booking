@@ -1,28 +1,29 @@
 import { Card, Image, Text, Group, Badge, Button, CardSection, Rating, rem } from '@mantine/core';
 import { IconClock, IconMapPin } from '@tabler/icons-react';
 
-export function EventCard() {
+
+export function EventCard({ data }) {
 
     return (
         <Card withBorder radius="md" className="hover:-translate-y-1 hover:scale-95 duration-300" >
             <CardSection>
-                <Image src="/images/events/soundsEvent.jpg" alt="" h={200} />
+                <Image src={data.image} alt="" h={"auto"} />
             </CardSection>
 
             <Group justify="space-between" my="sm">
                 <div>
                     <Text fz="sm" c="red.5">Event</Text>
-                    <Text fw={500}>Movie Night Quiz</Text>
+                    <Text fw={500}>{data.title}</Text>
                     <Group gap={1} align='center'>
                         <IconMapPin style={{ width: rem(14) }} />
                         <Text fz="xs" c="dimmed">
-                            14 Singila,Mwatate,Taita Tevata
+                            {data.venue}
                         </Text>
                     </Group>
                     <Group gap={1} align='center'>
                         <IconClock style={{ width: rem(14) }} />
                         <Text fz="xs" c="dimmed">
-                            02:30 pm - 07:00 pm
+                            {data.startTime} - {data.endTime}
                         </Text>
                     </Group>
                 </div>
@@ -33,7 +34,7 @@ export function EventCard() {
                 <Group gap={30}>
                     <div>
                         <Text fz="md" fw={700} style={{ lineHeight: 1 }}>
-                            Ksh 4,500.00
+                            Ksh {data.price}
                         </Text>
                         <Text fz="sm" c="dimmed" fw={500} style={{ lineHeight: 1 }} mt={3}>
                             per person
