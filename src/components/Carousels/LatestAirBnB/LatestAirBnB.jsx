@@ -39,7 +39,15 @@ const airBnBs = [
         price: 7500
     },
     {
-        image: "/images/property/crop_prop4.png",
+        image: "/images/property/crop_prop5.png",
+        title: "Modern luxury family home",
+        location: "14 Singila,Mwatate,Taita Tevata",
+        rating: 5.0,
+        reviews: 40,
+        price: 7500
+    },
+    {
+        image: "/images/property/crop_prop6.png",
         title: "Modern luxury family home",
         location: "14 Singila,Mwatate,Taita Tevata",
         rating: 5.0,

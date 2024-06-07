@@ -3,53 +3,13 @@ import { EventCard } from '@/components/Cards/Event/EventCard';
 import { Carousel, CarouselSlide } from '@mantine/carousel'
 import '@mantine/carousel/styles.css';
 import { useRef } from 'react';
-// import AutoScroll from 'embla-carousel-auto-scroll';
 import AutoPlay from 'embla-carousel-autoplay';
+import { CarouselCardSkeleton } from '@/components/Cards/CardSkeleton';
+import useSwr from 'swr';
+import { fetcher } from '@/lib/utility';
+import { Paper, Text } from '@mantine/core';
 
-const events = [
-    {
-        image: "/images/events/event1.png",
-        title: "Sounds from The East",
-        venue: "14 Singila,Mwatate,Taita Tevata",
-        startTime: "02:30 pm",
-        endTime: "07:00 pm",
-        price: 4500.00
-    },
-    {
-        image: "/images/events/event2.png",
-        title: "Sounds from The East",
-        venue: "14 Singila,Mwatate,Taita Tevata",
-        startTime: "02:30 pm",
-        endTime: "07:00 pm",
-        price: 4500.00
-    },
-    {
-        image: "/images/events/event3.png",
-        title: "Sounds from The East",
-        venue: "14 Singila,Mwatate,Taita Tevata",
-        startTime: "02:30 pm",
-        endTime: "07:00 pm",
-        price: 4500.00
-    },
-    {
-        image: "/images/events/event4.png",
-        title: "Sounds from The East",
-        venue: "14 Singila,Mwatate,Taita Tevata",
-        startTime: "02:30 pm",
-        endTime: "07:00 pm",
-        price: 4500.00
-    },
-    {
-        image: "/images/events/event5.png",
-        title: "Sounds from The East",
-        venue: "14 Singila,Mwatate,Taita Tevata",
-        startTime: "02:30 pm",
-        endTime: "07:00 pm",
-        price: 4500.00
-    },
-];
-
-const SliderItem = () => {
+const SliderItem = ({ events }) => {
     return (
         <>
             {
@@ -65,6 +25,18 @@ const SliderItem = () => {
 
 export default function LatestEvents() {
     const autoPlay = useRef(AutoPlay());
+
+
+    const { data, error, isLoading, isValidating } = useSwr('/api/events', fetcher);
+    // console.log(data)
+
+    const events = data?.data;
+    if (isLoading) return (
+        <CarouselCardSkeleton />
+    )
+
+    if (error) return <Paper>Failed to load events: {error.message}</Paper>
+
     return (
         <Carousel
             slidesToScroll={1}
@@ -73,7 +45,9 @@ export default function LatestEvents() {
             plugins={[autoPlay.current]}
             loop
             align="start">
-            <SliderItem />
+
+            <SliderItem events={events} />
+
         </Carousel>
     )
 }

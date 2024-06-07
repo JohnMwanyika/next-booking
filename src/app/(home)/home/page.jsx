@@ -31,6 +31,8 @@ export default function Home() {
                 </Group>
                 < LatestEvents />
             </Box>
+
+
         </Container>
     )
 }
