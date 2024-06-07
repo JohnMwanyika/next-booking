@@ -1,66 +1,19 @@
 "use client";
 import { AirBnBCard } from '@/components/Cards/AirBnB/AirBnBCard';
+import { CarouselCardSkeleton } from '@/components/Cards/CardSkeleton';
+import { fetcher } from '@/lib/utility';
 import { Carousel, CarouselSlide } from '@mantine/carousel'
 import '@mantine/carousel/styles.css';
 import AutoPlay from 'embla-carousel-autoplay';
 import { useRef } from 'react';
+import useSWR from 'swr';
 
-const airBnBs = [
-    {
-        image: "/images/property/crop_prop3.png",
-        title: "Modern luxury family home",
-        location: "14 Singila,Mwatate,Taita Tevata",
-        rating: 3.5,
-        reviews: 40,
-        price: 7500
-    },
-    {
-        image: "/images/property/crop_prop1.png",
-        title: "Modern luxury family home",
-        location: "14 Singila,Mwatate,Taita Tevata",
-        rating: 3.5,
-        reviews: 40,
-        price: 7500
-    },
-    {
-        image: "/images/property/crop_prop2.png",
-        title: "Modern luxury family home",
-        location: "14 Singila,Mwatate,Taita Tevata",
-        rating: 4.5,
-        reviews: 40,
-        price: 7500
-    },
-    {
-        image: "/images/property/crop_prop4.png",
-        title: "Modern luxury family home",
-        location: "14 Singila,Mwatate,Taita Tevata",
-        rating: 1.5,
-        reviews: 40,
-        price: 7500
-    },
-    {
-        image: "/images/property/crop_prop5.png",
-        title: "Modern luxury family home",
-        location: "14 Singila,Mwatate,Taita Tevata",
-        rating: 5.0,
-        reviews: 40,
-        price: 7500
-    },
-    {
-        image: "/images/property/crop_prop6.png",
-        title: "Modern luxury family home",
-        location: "14 Singila,Mwatate,Taita Tevata",
-        rating: 5.0,
-        reviews: 40,
-        price: 7500
-    },
-];
 
-const SliderItem = () => {
+const SliderItem = ({ data }) => {
     return (
         <>
             {
-                airBnBs.map(((airbnb, i) => (
+                data.map(((airbnb, i) => (
                     <CarouselSlide key={i}>
                         <AirBnBCard data={airbnb} />
                     </CarouselSlide>
@@ -70,8 +23,18 @@ const SliderItem = () => {
     )
 }
 
+
 export default function LatestAirBnB() {
     const autoPlay = useRef(AutoPlay());
+    const { data, isLoading } = useSWR('/api/airbnb', fetcher);
+
+    const airBnBs = data?.data;
+
+    if (isLoading) return (
+        <CarouselCardSkeleton />
+    )
+
+
     return (
         <Carousel
             slidesToScroll={1}
@@ -80,7 +43,7 @@ export default function LatestAirBnB() {
             plugins={[autoPlay.current]}
             loop
             align="start">
-            <SliderItem />
+            <SliderItem data={airBnBs} />
         </Carousel>
     )
 }
